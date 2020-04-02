@@ -1,4 +1,5 @@
 import 'package:carousel_pro/carousel_pro.dart';
+import './components/horizontallist_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -27,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
      Widget images_carousel=Container(
-        height: MediaQuery.of(context).size.width*0.4,
+        height: MediaQuery.of(context).size.width*0.5,
         child: Carousel(
           boxFit: BoxFit.fill,
           images: [
@@ -128,7 +129,12 @@ class _HomePageState extends State<HomePage> {
       ),
       body: ListView(
         children: <Widget>[
-          images_carousel
+          images_carousel,
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Text('Categroies',style: TextStyle(fontWeight: FontWeight.w500),),
+          ),
+          HorizontalList()
         ],
       ),
       
