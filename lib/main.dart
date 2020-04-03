@@ -3,6 +3,8 @@ import './components/horizontallist_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'components/recent_products.dart';
+
 
 
 void main(){
@@ -134,7 +136,17 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(4.0),
             child: Text('Categroies',style: TextStyle(fontWeight: FontWeight.w500),),
           ),
-          HorizontalList()
+          HorizontalList(),
+         Container(
+           height: MediaQuery.of(context).size.height*0.04,
+           alignment: Alignment.topLeft,
+           padding: EdgeInsets.all(4.0),
+           child: Text('Recent Products',style: TextStyle(fontWeight:FontWeight.w500,),),
+         ),
+          Container(
+            height: MediaQuery.of(context).size.width*0.9,
+            child: Products()
+            )
         ],
       ),
       
