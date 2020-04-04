@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'components/recent_products.dart';
+
 class ProductDetails extends StatefulWidget {
   final product_details_name;
   final product_details_image;
@@ -67,7 +69,20 @@ class _ProductDetailsState extends State<ProductDetails> {
                           ],
                       ),
                       onPressed:(){
-
+                        showDialog(context: context,
+                        builder:(ctx){
+                          return AlertDialog(
+                            title:Text('Size'),
+                            content:Text('Select Your Size'),
+                            actions: <Widget>[
+                              MaterialButton(
+                                child:Text('Close',style:TextStyle(color:Colors.blue),),
+                                onPressed:()=>Navigator.of(context).pop(),
+                              )
+                            ],
+                          );
+                        }
+                        );
                       },
                     ),
                   ),
@@ -83,7 +98,20 @@ class _ProductDetailsState extends State<ProductDetails> {
                           ],
                       ),
                       onPressed:(){
-
+                        showDialog(context: context,
+                        builder:(ctx){
+                          return AlertDialog(
+                            title:Text('Color'),
+                            content:Text('Choose Your Color'),
+                            actions: <Widget>[
+                              MaterialButton(
+                                child:Text('Close',style:TextStyle(color:Colors.blue),),
+                                onPressed:()=>Navigator.of(context).pop(),
+                              )
+                            ],
+                          );
+                        }
+                        );
                       },
                     ),
                   ),
@@ -99,7 +127,20 @@ class _ProductDetailsState extends State<ProductDetails> {
                           ],
                       ),
                       onPressed:(){
-
+                        showDialog(context: context,
+                        builder:(ctx){
+                          return AlertDialog(
+                            title:Text('Quantity'),
+                            content:Text('Select Your Quantity'),
+                            actions: <Widget>[
+                              MaterialButton(
+                                child:Text('Close',style:TextStyle(color:Colors.blue),),
+                                onPressed:()=>Navigator.of(context).pop(),
+                              )
+                            ],
+                          );
+                        }
+                        );
                       },
                     ),
                   ),
@@ -129,8 +170,55 @@ class _ProductDetailsState extends State<ProductDetails> {
                 }
                 ),
               ],
+            ),
+            ListTile(
+              title:Text('Product Description',style:TextStyle(fontWeight:FontWeight.w500),),
+              subtitle: Text('Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum'),
+            ),
+            Divider(),
+            Row(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(left:MediaQuery.of(context).size.width*0.03),
+                  child: Text('Product Name',style:TextStyle(color:Colors.grey),)),
+                Container(
+                  padding: EdgeInsets.only(left:MediaQuery.of(context).size.width*0.03),
+                  child: Text('${widget.product_details_name}',style:TextStyle(fontWeight:FontWeight.w500),))
+              ],
+            ),
+            SizedBox(height:MediaQuery.of(context).size.height*0.01,),
+            Row(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(left:MediaQuery.of(context).size.width*0.03),
+                  child: Text('Product Brand',style:TextStyle(color:Colors.grey),)),
+                Container(
+                  padding: EdgeInsets.only(left:MediaQuery.of(context).size.width*0.03),
+                  child: Text('BrandX',style:TextStyle(fontWeight:FontWeight.w500),))
+              ],
+            ),
+            SizedBox(height:MediaQuery.of(context).size.height*0.01,),
+            Row(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(left:MediaQuery.of(context).size.width*0.03),
+                  child: Text('Product Condition',style:TextStyle(color:Colors.grey),)),
+                Container(
+                  padding: EdgeInsets.only(left:MediaQuery.of(context).size.width*0.03),
+                  child: Text('New',style:TextStyle(fontWeight:FontWeight.w500),))
+              ],
+            ),
+            Divider(),
+          Container(
+            padding:EdgeInsets.only(left:MediaQuery.of(context).size.width*0.03),
+            child:Text('Similar Products',style:TextStyle(fontWeight:FontWeight.w700),),
+
+          ),
+          Container(
+            height: MediaQuery.of(context).size.width*0.9,
+            child: Products()
             )
-          
+
 
         ],
       ),

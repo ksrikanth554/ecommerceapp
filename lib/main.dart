@@ -1,4 +1,5 @@
 import 'package:carousel_pro/carousel_pro.dart';
+import './cart.dart';
 import './components/horizontallist_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -56,7 +57,11 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.red,
         actions: <Widget>[
           IconButton(icon: Icon(Icons.search,color: Colors.white,), onPressed: (){}),
-          IconButton(icon: Icon(Icons.shopping_cart,color: Colors.white,), onPressed: (){}),
+          IconButton(icon: Icon(Icons.shopping_cart,color: Colors.white,), 
+          onPressed: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>Cart()));
+          }
+          ),
 
         ],
       ),
@@ -96,6 +101,15 @@ class _HomePageState extends State<HomePage> {
                 title: Text('My Orders'),
               ),
               onTap:(){},
+            ),
+            InkWell(
+              child: ListTile(
+                leading: Icon(Icons.shopping_cart,color: Colors.red,),
+                title: Text('Shopping Cart'),
+              ),
+              onTap:(){
+                Navigator.of(context).push(MaterialPageRoute(builder:(ctx)=>Cart()));
+              },
             ),
             InkWell(
               child: ListTile(
