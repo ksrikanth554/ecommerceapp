@@ -1,20 +1,29 @@
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:ecommerceapp/login.dart';
+import 'package:ecommerceapp/providers/appprovider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 import 'cart.dart';
 import 'components/horizontallist_categories.dart';
 import 'components/recent_products.dart';
 
 class HomePage extends StatefulWidget {
+  String name;
+  String email;
+  String photo;
+  HomePage({this.name,this.email,this.photo});
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
- 
+ final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
+   // AppProvider appProvider=Provider.of<AppProvider>(context);
      Widget images_carousel=Container(
         height: MediaQuery.of(context).size.width*0.5,
         child: Carousel(
@@ -54,12 +63,16 @@ class _HomePageState extends State<HomePage> {
         child: ListView(
           children: <Widget>[
             UserAccountsDrawerHeader(
-             accountName:Text('Kotla Srikanth'),
-             accountEmail: Text('ksrikanth554@gmail.com'),
+             accountName:Text('${widget.name}'),
+             accountEmail: Text('${widget.email}'),
              currentAccountPicture: GestureDetector(
-               child: CircleAvatar(
-                 backgroundColor: Colors.grey,
-                 child: Icon(Icons.person,color: Colors.white,),
+               child:widget.photo!=null? ClipRRect(
+                 borderRadius: BorderRadius.circular(50),
+                // backgroundColor: Colors.grey,
+                 child: Image.network('${widget.photo}',fit:BoxFit.fill,),
+               ):CircleAvatar(
+                 backgroundColor: Colors.pink,
+                 child: Text('${widget.email.substring(0,1)}',style:TextStyle(color:Colors.orange,fontSize: 50),),
                ),
              ),
              decoration: BoxDecoration(
@@ -124,6 +137,16 @@ class _HomePageState extends State<HomePage> {
                 title: Text('About'),
               ),
               onTap:(){},
+            ),
+            InkWell(
+              child: ListTile(
+                leading: Icon(Icons.transit_enterexit,color: Colors.grey,),
+                title: Text('Log Out'),
+              ),
+              onTap:()async{
+                await _firebaseAuth.signOut();
+                Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(ctx)=>Login()));
+              },
             ),
           ],
         ),
